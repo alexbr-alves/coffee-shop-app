@@ -86,6 +86,7 @@ function LoginSpace(){
 }
 
 function SignUpSpace(){
+    const navigation = useNavigation()
     return(
         <View>
         <TextInput
@@ -109,7 +110,7 @@ function SignUpSpace(){
         placeholder="Confirm assword"
         />
 
-        <TouchableOpacity style={styles.buttom}>
+        <TouchableOpacity style={styles.buttom}  onPress={() => {navigation.navigate('TabRoutes')}}>
                 <Text style={styles.buttom__text}>SIgn up</Text>
             </TouchableOpacity>
     </View>

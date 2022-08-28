@@ -22,7 +22,7 @@ export default function Home(){
                 <Text style={styles.header__text}> Good day, Jimmy Page</Text>
                 <View style={{flexDirection: 'row'}}>
                     <Image source={notification} style={styles.header__iconNotification}/>
-                    <TouchableOpacity onPress={() => setMenu(!menu)}>
+                    <TouchableOpacity >
                     <Image source={drawer} style={styles.header__icondrower}/>
                     </TouchableOpacity>
                 </View>

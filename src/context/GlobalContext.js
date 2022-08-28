@@ -5,6 +5,8 @@ export const GlobalContext = createContext({})
 export function InfoProvider({children}){
     const [carrinho, setCarrinho] = useState([]);
     const [total, setTotal] = useState(0);
+    const [favorito, setFavorito] = useState([]);
+   
     
 
     function addOrders(name, price, descriptions, image, quantidade, id){
@@ -18,9 +20,18 @@ export function InfoProvider({children}){
     }
 
 
+
+    function addFavoritos(name, price, image){
+        favorito.unshift({name, price, image})
+    }
+
+    
+
+    console.log(favorito)
     return(
         <GlobalContext.Provider value={{
-            addOrders, carrinho, total, limparCarrinho
+            addOrders, carrinho, total, limparCarrinho,
+             favorito, addFavoritos,
         }}>
             {children}
         </GlobalContext.Provider>

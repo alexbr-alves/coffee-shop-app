@@ -6,6 +6,7 @@ export default StyleSheet.create({
     container: {
         backgroundColor: '#F8E3B6',
         flex: 1,
+        height: '100%'
     },
     header: {
         flexDirection: 'row',
@@ -29,4 +30,37 @@ export default StyleSheet.create({
         marginRight: 35
 
     },
+    boddy:  {
+        marginTop: 30,
+       alignItems: 'center',    
+    },
+    image: {
+        width: 155,
+        height: 221
+    },
+    name: {
+        position: 'absolute',
+        marginTop: 130,
+        marginLeft: 15,
+        fontFamily: "Inter_600SemiBold",
+        fontSize: 18, 
+        lineHeight: 21,
+        color: '#FCF2D9'
+    },
+    card__row: {
+        position: 'absolute',
+        marginTop: 176,
+        marginLeft: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    card__row__text: {
+        fontFamily: "Inter_600SemiBold",
+        fontSize: 18, 
+        lineHeight: 21,
+        color: '#FCF2D9'
+    },
+    card__row__icon: {
+        marginLeft: 35
+    }
 })

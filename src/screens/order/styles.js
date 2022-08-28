@@ -154,7 +154,8 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#834D1E',
         height: 45,
-        borderRadius: 5
+        borderRadius: 5,
+        marginBottom: 200
     },
     details__bottom__text: {
         fontFamily: "Inter_700Bold",

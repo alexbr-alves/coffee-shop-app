@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TouchableOpacity, Image, FlatList, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Image, FlatList, Alert, ScrollView } from "react-native";
 import styles from "./styles";
 
 import notification from '../../../assets/images/notification.png';
@@ -60,16 +60,14 @@ export default function Favorites(){
                 </View>
               
             )}
-            
-            />
-            </View>
-
-            {total > 0 ?
+            ListFooterComponent={
+                <>
+                 {total > 0 ?
              <View style={styles.details}>
              <View style={styles.details__division}></View>
             <View style={styles.details__row}>
                  <Text style={styles.details__row1}>Subtotal</Text>
-                 <Text style={styles.details__row1}>$ {total}</Text>
+                 <Text style={styles.details__row1}>$ {total.toFixed(2)}</Text>
             </View>
             <View style={styles.details__row}>
                  <Text style={styles.details__row2}>Delivery</Text>
@@ -77,7 +75,7 @@ export default function Favorites(){
             </View>
             <View style={styles.details__row}>
                  <Text style={styles.details__row3}>TOTAL</Text>
-                 <Text style={styles.details__row3}>$ {total + 1.99}</Text>
+                 <Text style={styles.details__row3}>$ {(total + 1.99).toFixed(2)}</Text>
             </View>
              <TouchableOpacity style={styles.details__bottom} onPress={() => {{Alert.alert('Purchase completed, now just wait')}{limparCarrinho()}} }>
                  <Text style={styles.details__bottom__text} >Finish</Text>
@@ -86,6 +84,12 @@ export default function Favorites(){
     :
     null    
     }
+                </>
+            }
+            />
+            </View>
+
+           
         </View>
     )
 }

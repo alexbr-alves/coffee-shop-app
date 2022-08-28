@@ -26,13 +26,14 @@ export default function Menu(){
     const [coffeeScreen, setCoffeeScreen] = useState(true);
     const [chocolateScreen, setChocolateScreen] = useState(false);
     const [othersScreen, setOthersScreen] = useState(false);
-    const [favorito, setFavorito] = useState(false);
+
     const [modalVisivel, setModalVisivel] = useState(false);
     const [quantidade, setQuantidade] = useState(1);
     const [itemModal, setItemModal] = useState([]);
+    const [fav, setFav] = useState(false);
     
 
-    const {addOrders} = useContext(GlobalContext);
+    const {addOrders, addFavoritos, favorito} = useContext(GlobalContext);
 
    function alterScreens(){
     if(coffeeScreen === true){
@@ -45,6 +46,7 @@ export default function Menu(){
    }
 
    
+   
   function AddModal(name, price, description, image, id){
     itemModal.unshift({name, price, description, image, id})
   } 
@@ -52,10 +54,13 @@ export default function Menu(){
     setModalVisivel(false)
     setItemModal([])
     setQuantidade(1)
+    setFav(false)
   }
   if(quantidade < 1){
     setQuantidade(1)
   }
+   
+
    
 
     return (
@@ -129,13 +134,12 @@ export default function Menu(){
             <TouchableOpacity onPress={() => {FecharModal()}}>
                     <Image style={styles.modal__topo__buttons} source={exit}/>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {{setFavorito(!favorito)}}}>
-                {favorito == false? 
-                 <Iconfav name="hearto" size={40} color='#ffffff'/>
-                 :
-                 <Iconfav name="heart" size={40} color= 'red'/>
-                }
-               
+            <TouchableOpacity onPress={() => {{addFavoritos(itemModal[0].name, itemModal[0].price, itemModal[0].image)}{setFav(!fav)}} }>
+            {fav === true? 
+            <Iconfav name="heart" size={40} color= 'red'/>
+                :
+            <Iconfav name="hearto" size={40} color='#ffffff'/>
+            }
             </TouchableOpacity>
            
            </View>
@@ -156,7 +160,7 @@ export default function Menu(){
                     <Image  source={mais}/>
                     </TouchableOpacity>
                    </View>
-                    <TouchableOpacity style={styles.modal__buy} onPress={() => {{addOrders(itemModal[0].name, itemModal[0].price, itemModal[0].description, itemModal[0].image, quantidade, itemModal[0].id )}{setModalVisivel(false)}}}>
+                    <TouchableOpacity style={styles.modal__buy} onPress={() => {{addOrders(itemModal[0].name, itemModal[0].price, itemModal[0].description, itemModal[0].image, quantidade, itemModal[0].id )}{setModalVisivel(false)}{setQuantidade(1)} {setFav(false)}}}>
                     <Text style={styles.modal__buy__text}>Buy now</Text>
                    </TouchableOpacity>
                 </Modal>

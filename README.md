@@ -27,3 +27,10 @@ do projeto (mas pode não ser a certa kkk).
 
 https://user-images.githubusercontent.com/103543739/187230083-006af6b7-661f-4d47-96f4-95b312d22f80.mp4
 
+Para usar a aplicação em um simulador, baixe o EXPO GO em sua loja de app e escaneie o QR-Code com a câmera do seu celular 
+
+<img src="https://user-images.githubusercontent.com/103543739/187234249-5fd6a872-7811-4fbb-87e5-da593593cdc3.png" 
+alt="![image]" 
+title="QR-CODE para o EXPO GO"
+style="width: 250px; height: 200px">
+

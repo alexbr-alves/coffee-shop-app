@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, Image, FlatList, RefreshControl } from "react-native";
 import styles from "./styles";
 
 import notification from '../../../assets/images/notification.png';
@@ -10,9 +10,11 @@ import { GlobalContext } from "../../context/GlobalContext";
 
 export default function Favorites(){
     const {favorito} = useContext(GlobalContext);
-    console.log(favorito)
+    useEffect(() => {
+        favorito
+    }, [])
     return(
-        <View style={styles.container}>
+        <View style={styles.container} >
               <View style={styles.header}>
                 <Text style={styles.header__text}>Your favorite drinks to{'\n'}lighten up your day</Text>
                 <View style={{flexDirection: 'row'}}>

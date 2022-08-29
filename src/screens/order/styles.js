@@ -112,7 +112,11 @@ export default StyleSheet.create({
     },
     boddy__card__date: {
         marginTop: 12,
-        marginRight: 25
+        marginRight: 25,
+        fontFamily: "Inter_600SemiBold",
+        fontSize: 12, 
+        lineHeight: 15,
+        color: '#834D1E'
     },
     details: {
 

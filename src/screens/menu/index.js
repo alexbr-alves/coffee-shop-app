@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity, FlatList, Modal } from "react-native";
-
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, Image, TextInput, TouchableOpacity, FlatList, Modal} from "react-native";
+import * as Animatable from 'react-native-animatable';
 import styles from './styles';
 import {GlobalContext} from '../../context/GlobalContext.js'
 
@@ -31,9 +31,10 @@ export default function Menu(){
     const [quantidade, setQuantidade] = useState(1);
     const [itemModal, setItemModal] = useState([]);
     const [fav, setFav] = useState(false);
-    
 
-    const {addOrders, addFavoritos, favorito} = useContext(GlobalContext);
+   
+
+    const {addOrders, addFavoritos} = useContext(GlobalContext);
 
    function alterScreens(){
     if(coffeeScreen === true){
@@ -44,6 +45,7 @@ export default function Menu(){
         return others
     }
    }
+
 
    
    
@@ -60,7 +62,8 @@ export default function Menu(){
     setQuantidade(1)
   }
    
-
+  
+  
    
 
     return (
@@ -115,7 +118,7 @@ export default function Menu(){
 
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.boddy__card__buttom} onPress={() => {{AddModal(item.name, item.price, item.description, item.image, item.id)}{setModalVisivel(true)}}}>
+                    <TouchableOpacity style={styles.boddy__card__buttom} onPress={() => {{setModalVisivel(true)}  {AddModal(item.name, item.price, item.description, item.image, item.id)}} }>
                         <Image source={select}/> 
                     </TouchableOpacity>
                    
@@ -126,44 +129,48 @@ export default function Menu(){
 
             />
             </View>
-
-            <Modal visible={modalVisivel} transparent={true} >
-            <Image style={styles.modal} source={fundoModal} />
-
-            <View style={styles.modal__topo}>
-            <TouchableOpacity onPress={() => {FecharModal()}}>
-                    <Image style={styles.modal__topo__buttons} source={exit}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {{addFavoritos(itemModal[0].name, itemModal[0].price, itemModal[0].image)}{setFav(!fav)}} }>
-            {fav === true? 
-            <Iconfav name="heart" size={40} color= 'red'/>
-                :
-            <Iconfav name="hearto" size={40} color='#ffffff'/>
-            }
-            </TouchableOpacity>
+            
            
-           </View>
-
-                <Text style={styles.modal__name}>{modalVisivel? itemModal[0].name : null}</Text>
-                <Text style={styles.modal__description}>{modalVisivel? itemModal[0].description: null}</Text>
+            <Modal visible={modalVisivel} transparent={true}  >
+                <Animatable.View animation={"fadeInUp"} useNativeDriver={true} 
+                duration={1000} iterationDelay={200}>
+                <Image style={styles.modal} source={fundoModal} />
+                <View style={styles.modal__topo}>
+                    <TouchableOpacity onPress={() => {FecharModal()}}>
+                        <Image style={styles.modal__topo__buttons} source={exit}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {{addFavoritos(itemModal[0].name, itemModal[0].price, itemModal[0].image)}{setFav(!fav)}} }>
+                        {fav === true? 
+                        <Iconfav name="heart" size={40} color= 'red'/>
+                         :
+                         <Iconfav name="hearto" size={40} color='#ffffff'/>
+                            }
+                     </TouchableOpacity>
+          
+                </View>
                
-                <Text style={styles.modal__price}>$ {modalVisivel? (itemModal[0].price * quantidade).toFixed(2): null}</Text>
-                 
-                   <View style={styles.quantidades}>
-                    <TouchableOpacity onPress={() => {setQuantidade(quantidade - 1)} }>
-                        <Image  source={menos}/>
-                        </TouchableOpacity>
+               <Text style={styles.modal__name}>{modalVisivel? itemModal[0].name : null}</Text>
+               <Text style={styles.modal__description}>{modalVisivel? itemModal[0].description: null}</Text>
+               <Text style={styles.modal__price}>$ {modalVisivel? (itemModal[0].price * quantidade).toFixed(2): null}</Text>
+         
+                <View style={styles.quantidades}>
+                   <TouchableOpacity onPress={() => {setQuantidade(quantidade - 1)} }>
+                       <Image  source={menos}/>
+                    </TouchableOpacity>
 
-                        <Text style={styles.modal__quantidadeNumber} >{quantidade}</Text>
+                    <Text style={styles.modal__quantidadeNumber} >{quantidade}</Text>
 
                     <TouchableOpacity onPress={() => {setQuantidade(quantidade + 1)}}>
                     <Image  source={mais}/>
                     </TouchableOpacity>
-                   </View>
-                    <TouchableOpacity style={styles.modal__buy} onPress={() => {{addOrders(itemModal[0].name, itemModal[0].price, itemModal[0].description, itemModal[0].image, quantidade, itemModal[0].id )}{setModalVisivel(false)}{setQuantidade(1)} {setFav(false)}}}>
-                    <Text style={styles.modal__buy__text}>Buy now</Text>
-                   </TouchableOpacity>
-                </Modal>
+                </View>
+                   <TouchableOpacity style={styles.modal__buy} onPress={() => {{addOrders(itemModal[0].name, itemModal[0].price, itemModal[0].description, itemModal[0].image, quantidade, itemModal[0].id )}{setModalVisivel(false)}{setQuantidade(1)} {setFav(false)}}}>
+                        <Text style={styles.modal__buy__text}>Buy now</Text>
+                  </TouchableOpacity>
+                </Animatable.View>
+           
+            </Modal>
+         
         </View>
     )
 }

@@ -1,6 +1,6 @@
 import  React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, View, Text, StyleSheet, Platform } from 'react-native';
+import { Image, View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { GlobalContext } from '../context/GlobalContext';
 
 
@@ -59,7 +59,7 @@ export default function TabRoutes() {
              </View>
             ) }} />
 
-        <Tab.Screen name="Order" component={Order} options={{
+        <Tab.Screen  name="Order" component={Order} options={{
             tabBarBadge: countOrders > 0? countOrders : null 
             ,tabBarIconStyle: {marginTop: 5},
            title: '', tabBarIcon: ({focused}) => (
@@ -69,7 +69,7 @@ export default function TabRoutes() {
             </View>
           )  }} />
         
-        <Tab.Screen name="favorites" component={Favorites} options={{
+        <Tab.Screen  name="favorites" component={Favorites} options={{
            title: '', tabBarIcon: ({focused}) => (
             <View style={styles.icons}>
                 <Image style={styles.icons__image} source={focused? tabFavorite2 : tabFavorite}/> 

@@ -21,13 +21,13 @@ export function InfoProvider({children}){
 
 
 
-    function addFavoritos(name, price, image){
+    async function addFavoritos(name, price, image){
         favorito.unshift({name, price, image})
+        return  favorito
     }
 
     
 
-    console.log(favorito)
     return(
         <GlobalContext.Provider value={{
             addOrders, carrinho, total, limparCarrinho,
